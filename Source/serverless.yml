@@ -1,0 +1,134 @@
+service: challenge
+
+provider:
+  name: aws
+  region: eu-central-1
+  runtime: provided.al2
+  architecture: arm64
+  versionFunctions: false
+  iam:
+    role:
+      statements:
+        - Effect: "Allow"
+          Action:
+            - "dynamodb:*"
+          Resource: "*"
+
+functions:
+  list_tables:
+    handler: lambdas/list_tables/main.go
+    events:
+      - http:
+          path: /list_tables
+          method: get
+  helloworld:
+    handler: lambdas/helloworld/main.go
+    events:
+      - http:
+          path: /helloworld
+          method: get
+  tester:
+    handler: lambdas/tester/main.go
+    events:
+      - http:
+          path: /tester
+          method: post
+  getitem:
+    handler: lambdas/getitem/main.go
+    events:
+      - http:
+          path: /getitem
+          method: post
+  get_devicegroup_devices:
+    handler: lambdas/get_devicegroup_devices/main.go
+    events:
+      - http:
+          path: /get_devicegroup_devices
+          method: post
+  get_devices_with_status:
+    handler: lambdas/get_devices_with_status/main.go
+    events:
+      - http:
+          path: /get_devices_with_status
+          method: post
+  get_device_with_mac:
+    handler: lambdas/get_device_with_mac/main.go
+    events:
+      - http:
+          path: /get_device_with_mac
+          method: post
+  get_devicegroups:
+    handler: lambdas/get_devicegroups/main.go
+    events:
+      - http:
+          path: /get_devicegroups
+          method: post
+  create_devicegroup:
+    handler: lambdas/create_devicegroup/main.go
+    events:
+      - http:
+          path: /create_devicegroup
+          method: put
+  create_device:
+    handler: lambdas/create_device/main.go
+    events:
+      - http:
+          path: /create_device
+          method: put
+  update_device_group_name:
+    handler: lambdas/update_device_group_name/main.go
+    events:
+      - http:
+          path: /update_device_group_name
+          method: put
+  update_device_name:
+    handler: lambdas/update_device_name/main.go
+    events:
+      - http:
+          path: /update_device_name
+          method: put
+  update_device_status:
+    handler: lambdas/update_device_status/main.go
+    events:
+      - http:
+          path: /update_device_status
+          method: put
+  update_device_mac:
+    handler: lambdas/update_device_mac/main.go
+    events:
+      - http:
+          path: /update_device_mac
+          method: put
+
+resources: # Cloudformation
+  Resources:
+    ChallengeTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:service}-table
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+
+
+### OUT OF SCOPE ###
+
+package:
+  patterns:
+    - '!./**'
+    - './bin/**'
+
+plugins:
+  - serverless-go-plugin
+
+custom:
+  go:
+    buildProvidedRuntimeAsBootstrap: true
+    cmd: GOARCH=arm64 GOOS=linux go build -tags lambda.norpc -ldflags="-s -w"
+    supportedRuntimes: [ "provided.al2" ]
