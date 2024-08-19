@@ -11,13 +11,6 @@ Tools
   Node.JS
   GoLang
   
-Setup
-  go mod tidy
-  go install golang.org/x/tools/cmd/goimports@latest
-  npm install
-  SET AWS_ACCESS_KEY_ID=<key>
-  SET AWS_SECRET_ACCESS_KEY=<key>
-  AWS_SESSION_TOKEN=<key>
   
 Folders and Content
   AWSCLI
@@ -26,6 +19,16 @@ Folders and Content
   Source
     serverless.yaml - Configuration of endpoints
     A bunch of main.go files, which implements Lambdas in Golang
+    
+Setup
+  cd Source
+  go mod tidy
+  go install golang.org/x/tools/cmd/goimports@latest
+  npm install
+  SET AWS_ACCESS_KEY_ID=<key>
+  SET AWS_SECRET_ACCESS_KEY=<key>
+  AWS_SESSION_TOKEN=<key>
+  serverless plugin install -n serverless-go-plugin
     
 Build and deploy
   goimports -w Source
