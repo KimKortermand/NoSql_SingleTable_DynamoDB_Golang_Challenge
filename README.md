@@ -25,9 +25,9 @@ Setup<br/>
   - go mod tidy<br/>
   - go install golang.org/x/tools/cmd/goimports@latest<br/>
   - npm install<br/>
-  - SET AWS_ACCESS_KEY_ID=<key><br/>
-  - SET AWS_SECRET_ACCESS_KEY=<key><br/>
-  - AWS_SESSION_TOKEN=<key><br/>
+  - SET AWS_ACCESS_KEY_ID=key<br/>
+  - SET AWS_SECRET_ACCESS_KEY=key<br/>
+  - AWS_SESSION_TOKEN=key<br/>
   - serverless plugin install -n serverless-go-plugin<br/>
 <br/>
 Build and deploy<br/>
