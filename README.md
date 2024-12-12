@@ -1,9 +1,9 @@
-
-
-Overview
-  This project implements a microservice in AWS.
-  Single table design for DynamoDB using Amazon API Gateway endpoints and Lambda functions in Golang.
-  AWS CLI is used to prototype most of the Lambda functions.
+ 
+ 
+Overview<br/>
+  This project implements a microservice in AWS.<br/>
+  Single table design for DynamoDB using Amazon API Gateway endpoints and Lambda functions in Golang.<br/>
+  AWS CLI is used to prototype most of the Lambda functions.<br/>
 
 Tools
   www.serverless.com
