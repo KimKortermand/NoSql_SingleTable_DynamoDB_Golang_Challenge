@@ -13,10 +13,10 @@ Tools<br/>
 <br/>
 <br/>
 Folders and Content<br/>
-  - AWSCLI<br/>
+   AWSCLI<br/>
     - CreateTable.bat <table name>  - creates a table in DynamoDB on AWS<br/>
     - A bunch of .bat files implementing most CRUD operations.<br/>
-  - Source<br/>
+   Source<br/>
     - serverless.yaml - Configuration of endpoints<br/>
     - A bunch of main.go files, which implements Lambdas in Golang<br/>
 <br/>
